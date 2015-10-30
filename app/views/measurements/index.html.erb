@@ -1,0 +1,17 @@
+<h1>Listing measurements</h1>
+<%= link_to 'New measurement', new_measurement_path %>
+<table>
+  <tr>
+    <th>Temperature</th>
+    <th>Humidity</th>
+	 <th>Pressure</th>
+  </tr>
+ 
+  <% @measurements.each do |measurement| %>
+    <tr>
+      <td><%= measurement.temperature %></td>
+      <td><%= measurement.humidity %></td>
+      <td><%= measurement.pressure %></td>
+    </tr>
+  <% end %>
+</table>
