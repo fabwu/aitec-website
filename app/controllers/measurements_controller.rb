@@ -2,11 +2,11 @@ class MeasurementsController < ApplicationController
 	skip_before_filter :verify_authenticity_token
 
 	def index
-   	@measurements = Measurement.all
+   	@measurements = Measurement.order('measurements.created_at DESC').all
 	end
 	
 	def show
-   	@measurement = Measurement.find(params[:id])
+   	redirect_to measurements_url
   	end
 
 	def new
@@ -16,7 +16,14 @@ class MeasurementsController < ApplicationController
 		@measurement = Measurement.new(measurement_params)
  
 		@measurement.save
-		redirect_to @measurement
+		redirect_to measurements_url
+	end
+	
+	def destroy
+  		@measurement = Measurement.find(params[:id])
+  		@measurement.destroy
+ 
+  		redirect_to measurements_path
 	end
 	
 	private 
