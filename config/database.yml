@@ -11,7 +11,14 @@ default: &default
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  # database: db/development.sqlite3
+  adapter: mysql2
+  database: aitec_website
+  pool: 20
+  encoding: utf8
+  username: root
+  password: dachs
+  host:  localhost
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

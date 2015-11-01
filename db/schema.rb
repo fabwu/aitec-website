@@ -14,11 +14,11 @@
 ActiveRecord::Schema.define(version: 20151030163741) do
 
   create_table "measurements", force: :cascade do |t|
-    t.text     "temperature"
-    t.text     "humidity"
-    t.text     "pressure"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "temperature", limit: 65535
+    t.text     "humidity",    limit: 65535
+    t.text     "pressure",    limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
 end

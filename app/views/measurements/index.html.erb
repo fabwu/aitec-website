@@ -1,10 +1,23 @@
 <h1>Listing measurements</h1>
 <%= link_to 'New measurement', new_measurement_path %>
+<%= line_chart [
+		{ name: "Temperature", 
+		  data: Measurement.group_by_hour(:created_at).maximum(:temperature) 
+		},
+		{ name: "Humidity", 
+		  data: Measurement.group_by_hour(:created_at).maximum(:humidity) 
+		},
+		{ name: "Pressure", 
+		  data: Measurement.group_by_hour(:created_at).maximum(:pressure) 
+		},
+	]
+%>
 <table>
   <tr>
     <th>Temperature</th>
     <th>Humidity</th>
 	 <th>Pressure</th>
+	 <th>Date</th>
   </tr>
  
   <% @measurements.each do |measurement| %>
@@ -12,6 +25,7 @@
       <td><%= measurement.temperature %></td>
       <td><%= measurement.humidity %></td>
       <td><%= measurement.pressure %></td>
+      <td><%= measurement.created_at.to_formatted_s(:db)      %></td>
     </tr>
   <% end %>
 </table>
