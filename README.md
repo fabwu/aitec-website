@@ -17,3 +17,16 @@ Um den Server zu starten führe folgenden Befehl aus:
 ```bash
 rails server
 ```
+Die Beispieldaten können mit diesem Befehl geladen werden:
+```bash
+rake db:seed
+```
+Um neue Messwerte hinzuzufügen muss ein `POST` an diese Adresse `http://localhost:3000/measurements.json` erfolgen.
+Der Body sollte so aussehen:
+```json
+{
+  "temperature": 10,
+  "humidity": 20,
+  "pressure": 30   
+}
+```
