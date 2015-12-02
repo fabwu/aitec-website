@@ -11,12 +11,16 @@ sudo gem install rails
 git clone https://github.com/wuethrich44/aitec-website/
 cd aitec-website/
 bundle install
+sudo /etc/init.d/mysql restart
 ```
+
 Um den Server zu starten führe folgenden Befehl aus:
 
 ```bash
-rails server
+sudo rails server -b 0.0.0.0 -p 80
 ```
+Der Server läuft nun auf dem entsprechenden Netzwerk-Adapater.
+
 Die Beispieldaten können mit diesem Befehl geladen werden:
 ```bash
 rake db:seed
