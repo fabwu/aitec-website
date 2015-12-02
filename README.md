@@ -34,3 +34,12 @@ Der Body sollte so aussehen:
   "pressure": 30   
 }
 ```
+
+Um ein neues Interval hinzuzufügen muss ein `POST` an diese Adresse `http://localhost:3000/intervals.json` erfolgen.
+Der Body sollte so aussehen:
+```json
+{
+    "start": "2015-12-02T10:30:00.000Z",
+    "end": "2015-12-02T10:30:00.000Z"
+}
+```
