@@ -1,0 +1,16 @@
+<h1>Neues Interval</h1>
+<%= form_for :interval, url: intervals_path do |f| %>
+   <div class="form-group">
+    <%= f.label :start %><br>
+    <%= f.datetime_select :start %>
+  </div>
+ 
+  <div class="form-group">
+    <%= f.label :end %><br>
+    <%= f.datetime_select :end %>
+  </div>
+  
+  <%= f.submit "Interval speichern", class: "btn btn-primary"%>
+  <%= link_to "Zurück", { :controller => :application, :action => :index }, { class: "btn btn-default" } %>
+ <% end %>
+

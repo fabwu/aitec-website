@@ -16,6 +16,6 @@
   </div>
  
   <%= f.submit "Messung speichern", class: "btn btn-primary"%>
-  <%= link_to 'Zurück', measurements_path, class: "btn btn-default" %>
+  <%= link_to "Zurück", { :controller => :application, :action => :index }, { class: "btn btn-default" } %>
  <% end %>
 

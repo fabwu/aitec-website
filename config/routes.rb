@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  resources :intervals
   resources :measurements
 
-  root 'measurements#index'
+  root 'application#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

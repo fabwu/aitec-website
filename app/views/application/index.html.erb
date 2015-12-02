@@ -1,5 +1,6 @@
 <h1>AITEC Wetterstation</h1>
 <%= link_to 'Neue Messung', new_measurement_path %>
+<%= link_to 'Neues Interval', new_interval_path %>
 <%= line_chart [
 		{ name: "Temperatur", 
 		  data: Measurement.group_by_hour(:created_at).maximum(:temperature) 
@@ -12,6 +13,27 @@
 		},
 	]
 %>
+<table class="table table-hover">
+	<thead>
+		<tr>
+		 <th>Start</th>
+		 <th>Ende</th>
+		 <th></th>
+		</tr>
+ 	</thead>
+ 
+ 	<tbody>
+  	<% @intervals.each do |interval| %>
+    	<tr>
+      	<td><%= interval.start %></td>
+      	<td><%= interval.end %></td>
+      	<td><%= link_to 'Löschen', interval_path(interval),
+              method: :delete,
+              data: { confirm: 'Möchtest du das Interval wirklich löschen?' } %></td>
+   	</tr>
+  	<% end %>
+  	</tbody>
+</table>
 <table class="table table-hover">
 	<thead>
 		<tr>
