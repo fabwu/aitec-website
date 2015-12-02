@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   
   	def index
+  		@selected_interval = Interval.find_by(is_current: true)
+  		
+  		if(@selected_interval == nil)
+  			@selected_interval = Interval.new
+  			@selected_interval.start = 2.hours.ago
+  			@selected_interval.end = Time.now
+  		end
+  		
    	@measurements = Measurement.order('measurements.created_at DESC').all
    	@intervals = Interval.all
 	end

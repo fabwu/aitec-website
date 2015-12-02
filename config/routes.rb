@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :intervals
+  resources :intervals
   resources :measurements
 
   root 'application#index'

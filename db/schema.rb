@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151202094336) do
+ActiveRecord::Schema.define(version: 20151202102202) do
 
   create_table "intervals", force: :cascade do |t|
     t.datetime "start"
     t.datetime "end"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_current", default: false
   end
 
   create_table "measurements", force: :cascade do |t|

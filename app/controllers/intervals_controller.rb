@@ -1,5 +1,6 @@
 class IntervalsController < ApplicationController
-  before_action :set_interval, only: [:destroy]
+  skip_before_filter :verify_authenticity_token
+  before_action :set_interval, only: [:update, :destroy]
 
   # POST /intervals
   # POST /intervals.json
@@ -14,6 +15,29 @@ class IntervalsController < ApplicationController
         format.html { render :new }
         format.json { render json: @interval.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  # PUT /intervals/1
+  def update
+  	 @existing_interval = Interval.find_by(is_current: true)
+  	 
+  	 if(@existing_interval != nil)
+	  	 @existing_interval.is_current = false
+	  	 @existing_interval.save
+	 end
+  
+  	 if(@interval.is_current)
+  	 	@interval.is_current = false
+  	 else
+	  	@interval.is_current = true
+	 end
+	 
+	 @interval.save
+	 
+	 respond_to do |format|
+      format.html { redirect_to url_for(:controller => :application, :action => :index), notice: 'Interval was successfully updated.' }
+      format.json { head :no_content }
     end
   end
 
