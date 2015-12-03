@@ -1,15 +1,15 @@
 <h1>AITEC Wetterstation</h1>
 <%= link_to 'Neue Messung', new_measurement_path %>
-<%= link_to 'Neues Interval', new_interval_path %>
+<%= link_to 'Neues Interval', "/intervals", method: :post  %>
 <%= line_chart [
 		{ name: "Temperatur", 
 		  data: Measurement.group_by_hour(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:temperature) 
 		},
 		{ name: "Feuchtigkeit", 
-		  data: Measurement.group_by_hour(:created_at).maximum(:humidity) 
+		  data: Measurement.group_by_hour(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:humidity) 
 		},
 		{ name: "Luftdruck", 
-		  data: Measurement.group_by_hour(:created_at).maximum(:pressure) 
+		  data: Measurement.group_by_hour(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:pressure) 
 		},
 	]
 %>

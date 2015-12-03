@@ -5,17 +5,23 @@ class IntervalsController < ApplicationController
   # POST /intervals
   # POST /intervals.json
   def create
-    @interval = Interval.new(interval_params)
-
-    respond_to do |format|
-      if @interval.save
-        format.html { redirect_to url_for(:controller => :application, :action => :index), notice: 'Interval was successfully created.' }
-        format.json { render :show, status: :created, location: @interval }
-      else
-        format.html { render :new }
-        format.json { render json: @interval.errors, status: :unprocessable_entity }
-      end
-    end
+  	@existing_interval = Interval.find_by(end: nil)
+  	
+  	if(@existing_interval != nil)
+  		@existing_interval.end = Time.now
+  		@existing_interval.is_current = false
+  		@existing_interval.save
+	end
+  	
+  	@new_interval = Interval.new
+	@new_interval.start = Time.now
+	@new_interval.is_current = true
+	@new_interval.save
+  
+   respond_to do |format|
+      format.html { redirect_to url_for(:controller => :application, :action => :index), notice: 'Interval was successfully created.' }
+  		format.json { render :nothing => true, :status => 200 }
+	end
   end
   
   # PUT /intervals/1

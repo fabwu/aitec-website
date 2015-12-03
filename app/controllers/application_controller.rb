@@ -12,7 +12,11 @@ class ApplicationController < ActionController::Base
   			@selected_interval.end = Time.now
   		end
   		
+  		if(@selected_interval.end == nil)
+  			@selected_interval.end = Time.now
+  		end
+  		
    	@measurements = Measurement.order('measurements.created_at DESC').all
-   	@intervals = Interval.all
+   	@intervals = Interval.order('intervals.start DESC').all
 	end
 end
