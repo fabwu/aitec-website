@@ -3,15 +3,21 @@
 <%= link_to 'Neues Interval', "/intervals", method: :post  %>
 <%= line_chart [
 		{ name: "Temperatur", 
-		  data: Measurement.group_by_hour(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:temperature) 
+		  data: Measurement.group_by_second(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:temperature) 
 		},
 		{ name: "Feuchtigkeit", 
-		  data: Measurement.group_by_hour(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:humidity) 
+		  data: Measurement.group_by_second(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:humidity) 
 		},
 		{ name: "Luftdruck", 
-		  data: Measurement.group_by_hour(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:pressure) 
+		  data: Measurement.group_by_second(:created_at, range: @selected_interval.start..@selected_interval.end).maximum(:pressure),
 		},
-	]
+	],
+	library: {
+		xAxis: {
+			visible: false
+		}
+	},
+	discrete: true
 %>
 <table class="table table-hover">
 	<thead>
