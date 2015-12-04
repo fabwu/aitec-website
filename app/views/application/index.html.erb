@@ -26,8 +26,8 @@
  	<tbody>
   	<% @intervals.each do |interval| %>
     	<tr>
-      	<td><%= interval.start %></td>
-      	<td><%= interval.end %></td>
+      	<td><%= interval.start.strftime("%d.%m.%y - %H:%M:%S") %></td>
+      	<td><%= !interval.end || interval.end.strftime("%d.%m.%y - %H:%M:%S") %></td>
    		<td><%= interval.is_current %></td>	
       	<td><%= link_to 'Aktivieren', interval_path(interval),
               method: :put %>
@@ -57,7 +57,7 @@
       	<td><%= measurement.temperature %></td>
       	<td><%= measurement.humidity %></td>
       	<td><%= measurement.pressure %></td>
-      	<td><%= measurement.created_at.to_formatted_s(:db) %></td>
+      	<td><%= measurement.created_at.strftime("%d.%m.%y - %H:%M:%S") %></td>
       	<td><%= link_to 'Löschen', measurement_path(measurement),
               method: :delete,
               data: { confirm: 'Möchtest du die Messung wirklich löschen?' } %></td>
