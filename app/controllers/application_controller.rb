@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   		end
   		
   		if(@selected_interval.end == nil)
-  			@selected_interval.end = @selected_interval.start + 2.minutes
+  			@selected_interval.end = @selected_interval.start + 10.minutes
   		end
   		
    	@measurements = Measurement.order('measurements.created_at DESC').all
